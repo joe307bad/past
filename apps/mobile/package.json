@@ -5,6 +5,7 @@
   "dependencies": {
     "react-native": "*",
     "react": "*",
+    "inkjs":"*",
     "@testing-library/react-native": "*",
     "@testing-library/jest-native": "*"
   }

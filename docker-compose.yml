@@ -1,0 +1,10 @@
+version: '2.3'
+
+services:
+  static:
+    image: flashspys/nginx-static
+    ports:
+      - 3080:80
+    volumes:
+      - /Users/jbadaczewski/Source/bada/past/static:/static
+    restart: always

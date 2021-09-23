@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -17,8 +17,24 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 // @ts-ignore
 import openURLInBrowser from 'react-native/Libraries/Core/Devtools/openURLInBrowser';
+import * as inkjs from 'inkjs';
 
 const App = () => {
+  useEffect(() => {
+    fetch('http://localhost:3080/Past.json')
+      .then(function (response) {
+        return response.text();
+      })
+      .then(function (storyContent) {
+        const story = new inkjs.Story(storyContent);
+        console.log(story.ContinueMaximally());
+        console.log(story.currentChoices);
+        console.log(story.ChooseChoiceIndex(0));
+        console.log(story.ContinueMaximally());
+        console.log(story.currentChoices);
+      });
+  });
+
   return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -60,7 +76,6 @@ const App = () => {
               <TouchableOpacity
                 accessibilityRole="button"
                 onPress={() => openURLInBrowser('https://nx.dev')}
-                testID="nx-link"
               >
                 <Text style={styles.sectionDescription}>
                   Visit <Text style={styles.link}>nx.dev</Text> for more info
