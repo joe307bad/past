@@ -6,7 +6,8 @@
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
-    "run:android": "nx run-android mobile"
+    "run:android": "nx run-android mobile",
+    "tunnel": "adb reverse tcp:3080 tcp:3080"
   },
   "private": true,
   "devDependencies": {

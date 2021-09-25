@@ -21,17 +21,17 @@ import * as inkjs from 'inkjs';
 
 const App = () => {
   useEffect(() => {
-    fetch('http://localhost:3080/Past.json')
+    fetch('http://localhost:3080/Past.json', {
+      headers: {
+        'Cache-Control': 'no-cache',
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+    })
+      .then((response) => response.json())
       .then(function (response) {
-        return response.text();
-      })
-      .then(function (storyContent) {
-        const story = new inkjs.Story(storyContent);
+        const story = new inkjs.Story(response);
         console.log(story.ContinueMaximally());
-        console.log(story.currentChoices);
-        console.log(story.ChooseChoiceIndex(0));
-        console.log(story.ContinueMaximally());
-        console.log(story.currentChoices);
       });
   });
 
