@@ -7,6 +7,7 @@
     "react": "*",
     "inkjs":"*",
     "@testing-library/react-native": "*",
-    "@testing-library/jest-native": "*"
+    "@testing-library/jest-native": "*",
+    "react-native-reanimated": "*"
   }
 }

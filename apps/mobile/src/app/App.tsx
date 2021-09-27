@@ -9,6 +9,11 @@ import {
   StatusBar,
   TouchableOpacity,
 } from 'react-native';
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withSpring,
+} from 'react-native-reanimated';
 
 import {
   Colors,
@@ -145,4 +150,26 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+function WobbleExample(props) {
+  const rotation = useSharedValue(0);
+
+  const animatedStyle = useAnimatedStyle(() => {
+    return { transform: [{ rotateZ: withSpring(rotation.value) }] };
+  });
+
+  useEffect(() => {
+    setInterval(() => {
+      rotation.value = Math.random() * 100;
+    }, 5000);
+  });
+
+  return (
+    <>
+      <Animated.View style={[animatedStyle]}>
+        <App />
+      </Animated.View>
+    </>
+  );
+}
+
+export default WobbleExample;
