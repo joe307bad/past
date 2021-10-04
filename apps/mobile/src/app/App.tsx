@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
 });
 
 function WobbleExample(props) {
-  const rotation = useSharedValue(0);
+  const rotation = useSharedValue('0deg');
 
   const animatedStyle = useAnimatedStyle(() => {
     return { transform: [{ rotateZ: withSpring(rotation.value) }] };
@@ -159,7 +159,7 @@ function WobbleExample(props) {
 
   useEffect(() => {
     setInterval(() => {
-      rotation.value = Math.random() * 100;
+      rotation.value = `${Math.random() * 100}deg`;
     }, 5000);
   });
 
