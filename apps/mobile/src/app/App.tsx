@@ -13,6 +13,8 @@ import Animated, {
   useSharedValue,
   useAnimatedStyle,
   withSpring,
+  useDerivedValue,
+  withTiming,
 } from 'react-native-reanimated';
 
 import {
@@ -151,15 +153,17 @@ const styles = StyleSheet.create({
 });
 
 function WobbleExample(props) {
-  const rotation = useSharedValue('0deg');
+  const rotation = useSharedValue(0);
 
   const animatedStyle = useAnimatedStyle(() => {
-    return { transform: [{ rotateZ: withSpring(rotation.value) }] };
+    return {
+      transform: [{ translateX: withSpring(rotation.value) }],
+    };
   });
 
   useEffect(() => {
     setInterval(() => {
-      rotation.value = `${Math.random() * 100}deg`;
+      rotation.value = Math.random() * 100;
     }, 5000);
   });
 
